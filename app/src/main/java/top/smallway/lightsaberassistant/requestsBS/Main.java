@@ -1,5 +1,7 @@
 package top.smallway.lightsaberassistant.requestsBS;
 
+import android.util.Log;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
@@ -25,14 +27,16 @@ public class Main {
         List<Song> songList = new ArrayList<>();
         JSONObject jsonObject = JSONObject.parseObject(response);
         JSONArray docsArray = jsonObject.getJSONArray("docs");
+        Log.d("docsArray", String.valueOf(docsArray));
         for (int i = 0; i < docsArray.size(); i++) {
             JSONObject docObject = docsArray.getJSONObject(i);
             String songAuthorName = docObject.getJSONObject("metadata").getString("songAuthorName");
             String songName = docObject.getString("name");
             String songPicURL = docObject.getJSONObject("uploader").getString("avatar");
             String downloadURL = docObject.getJSONArray("versions").getJSONObject(0).getString("downloadURL");
-            String difficulty = String.valueOf(docObject.getJSONArray("versions").getJSONObject(0).getJSONArray("diffs").getJSONObject(0).getInteger("nps"));
-
+            float difficulty = docObject.getJSONArray("versions").getJSONObject(0).getJSONArray("diffs").getJSONObject(0).getFloat("nps");
+            int notes =docObject.getJSONArray("versions").getJSONObject(0).getJSONArray("diffs").getJSONObject(0).getInteger("notes");
+//            音符数量
             Song song = new Song(songAuthorName, songName, songPicURL, downloadURL, difficulty);
             songList.add(song);
         }

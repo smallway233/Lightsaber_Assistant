@@ -55,7 +55,7 @@ public class second_song extends AppCompatActivity {
             public void onClick(View v) {
                 if (ready==null){
                     AlertDialog.Builder builder = new AlertDialog.Builder(second_song.this);
-                    builder.setTitle("正在开始准备工作");
+                    builder.setMessage("正在开始准备工作");
                     ready = builder.create();
                     ready.setCancelable(false);
                     ready.show();

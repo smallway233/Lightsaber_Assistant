@@ -5,9 +5,9 @@ public class Song {
     private String songName;
     private String songPicURL;
     private String downloadURL;
-    private String difficulty;
+    private float difficulty;
 
-    public Song(String songAuthorName, String songName, String songPicURL, String downloadURL, String difficulty) {
+    public Song(String songAuthorName, String songName, String songPicURL, String downloadURL, float difficulty) {
         this.songAuthorName = songAuthorName;
         this.songName = songName;
         this.songPicURL = songPicURL;
@@ -48,10 +48,10 @@ public class Song {
     }
 
     public String getDifficulty() {
-        return difficulty;
+        return String.valueOf(difficulty);
     }
 
-    public void setDifficulty(String difficulty) {
+    public void setDifficulty(float difficulty) {
         this.difficulty = difficulty;
     }
 }
